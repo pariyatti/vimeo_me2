@@ -31,7 +31,7 @@ module VimeoMe2
     def name
       @video['name']
     end
-    
+
     def description= description
       @video['description'] = description
     end
@@ -39,7 +39,7 @@ module VimeoMe2
     def description
       @video['description']
     end
-    
+
     def privacy
       @video['privacy'] ||= {}
     end
@@ -54,8 +54,9 @@ module VimeoMe2
 
     def update
       body = @video
-      # temporary fix, because API does not accept privacy in request
-      body.delete('privacy')
+      # # temporary fix, because API does not accept privacy in request
+      # # temporary un-fix... the API should respect this? -sd
+      # body.delete('privacy')
       body.delete('type')
       patch(nil, body:body, code:[200,204])
     end
